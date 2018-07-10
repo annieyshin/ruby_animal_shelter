@@ -8,20 +8,20 @@ class Animal
     @date_of_admittance = attributes.fetch(:date_of_admittance)
     @animal_type = attributes.fetch(:animal_type)
     @animal_breed = attributes.fetch(:animal_breed)
-    @id_customer = attributes.fetch(:id_customer)
+    # @id_customer = attributes.fetch(:id_customer)
   end
 
   def self.all
     returned_lists = DB.exec("SELECT * FROM animals;")
     lists = []
     returned_lists.each() do |animal|
-      id = animals.fetch("id").to_i()
-      animal_name = animals.fetch("animal_name")
-      animal_gender = animals.fetch("animal_gender")
-      date_of_admittance = animals.fetch("date_of_admittance")
-      animal_type = animals.fetch("animal_type")
-      animal_breed = animals.fetch("animal_breed")
-      id_customer = animals.fetch("id_customer")
+      id = animal.fetch("id").to_i()
+      animal_name = animal.fetch("animal_name")
+      animal_gender = animal.fetch("animal_gender")
+      date_of_admittance = animal.fetch("date_of_admittance")
+      animal_type = animal.fetch("animal_type")
+      animal_breed = animal.fetch("animal_breed")
+      id_customer = animal.fetch("id_customer")
 
       lists.push(Animal.new({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed, :id_customer => id_customer}))
     end
@@ -57,7 +57,7 @@ class Animal
   end
 
   def ==(another_list)
-    self.animal_name().==(another_list.name()).&(self.id().==(another_list.id()))
+    self.animal_name().==(another_list.animal_name()).&(self.id().==(another_list.id()))
   end
 
 end
