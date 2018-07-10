@@ -35,16 +35,8 @@ class Animal
   def list_all_animal_information
     returned_animals = DB.exec("SELECT * FROM animals WHERE id = (#{@id});")
     animal_array = []
-    returned_animals.each() do |animal|
-      id = animal.fetch("id").to_i()
-      animal_name = animal.fetch("animal_name")
-      animal_gender = animal.fetch("animal_gender")
-      date_of_admittance = animal.fetch("date_of_admittance")
-      animal_type = animal.fetch("animal_type")
-      animal_breed = animal.fetch("animal_breed")
-      id_customer = animal.fetch("id_customer")
-      .push(Animal.new({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed, :id_customer => id_customer}))
-    end
+    animal_array.push({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed})
+    binding.pry
     animal_array
   end
 
