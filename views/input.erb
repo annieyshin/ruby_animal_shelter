@@ -1,19 +1,23 @@
 <h2>Animal Information Form</h2>
 
-<% @list.each do |item| %>
-  <p><%= item.name %></p>
+<% @list.each do |animal| %>
+  <p><%= animals.animal_name %></p>
 <% end %>
 
-<h4>Add an animal to the list:</h4>
+<h4>Add an animal to the database:</h4>
 
 <form action="/" method="post">
   <div class="form-group">
-    <label for="name">Animal Type</label>
-    <input id="name" name="name" class="form-control" type="text">
-  </div>
-  <div class="form-group">
-    <label for="name">Animal</label>
-    <input id="name" name="name" class="form-control" type="text">
+    <label for="animal_name">Animal Name</label>
+    <input id="animal_name" name="animal_name" class="form-control" type="text">
+    <label for="animal_gender">Animal Gender</label>
+    <input id="animal_gender" name="animal_gender" class="form-control" type="text">
+    <label for="date_of_admittance">Date of Admittance</label>
+    <input id="date_of_admittance" name="date_of_admittance" class="form-control" type="date">
+    <label for="animal_type">Animal Type</label>
+    <input id="animal_type" name="animal_type" class="form-control" type="text">
+    <label for="animal_breed">Animal Breed</label>
+    <input id="animal_breed" name="animal_breed" class="form-control" type="text">
   </div>
   <button type="submit" class="btn">Go!</button>
 </form>
