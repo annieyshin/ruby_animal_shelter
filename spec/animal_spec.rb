@@ -18,12 +18,12 @@ describe(Animal) do
       expect(Animal.all()).to(eq([test_animal]))
     end
   end
-  # describe("#description") do
-  #  it("lets you read the description out") do
-  #    test_task = Task.new({:description => "learn SQL", :list_id => 1, :due_date => Date.new(2018,7,20)})
-  #    expect(test_task.description()).to(eq("learn SQL"))
-  #  end
-  # end
+  describe("#animal_name") do
+   it("lets you read the animal name and information") do
+     test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => 06/06/2006, :animal_type => "cat", :animal_breed => "siamese"})
+     expect(test_animal.animal_name()).to(eq("Charlie"))
+   end
+  end
   # describe("#list_id") do
   #  it("lets you read the list ID out") do
   #    test_task = Task.new({:description => "learn SQL", :list_id => 1, :due_date => Date.new(2018,7,20)})

@@ -31,18 +31,22 @@ class Animal
     result = DB.exec("INSERT INTO animals (animal_name) VALUES ('#{@animal_name}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
-  #
-  # def list_all_animals
-  #   returned_animals = DB.exec("SELECT * FROM animals WHERE id = (#{@id});")
-  #   tasks = []
-  #   returned_animals.each() do |animal|
-  #     pet = task.fetch("animal_name")
-  #     id = task.fetch("id").to_i() # The information comes out of the database as a string.
-  #     date_of_admittance = task.fetch("date_of_admittance")
-  #     .push(Animal.new({:id => id, :animal_name => animal_name, , :date_of_admittance => date_of_admittance}))
-  #   end
-  #   tasks
-  # end
+
+  def list_all_animal_information
+    returned_animals = DB.exec("SELECT * FROM animals WHERE id = (#{@id});")
+    animal_array = []
+    returned_animals.each() do |animal|
+      id = animal.fetch("id").to_i()
+      animal_name = animal.fetch("animal_name")
+      animal_gender = animal.fetch("animal_gender")
+      date_of_admittance = animal.fetch("date_of_admittance")
+      animal_type = animal.fetch("animal_type")
+      animal_breed = animal.fetch("animal_breed")
+      id_customer = animal.fetch("id_customer")
+      .push(Animal.new({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed, :id_customer => id_customer}))
+    end
+    animal_array
+  end
 
   def sort_date_of_admittance
     returned_date_of_admittance = DB.exec("SELECT * FROM animals WHERE id =(#{@id}) ORDER BY date_of_admittance;")
