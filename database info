@@ -1,0 +1,21 @@
+CREATE TABLE "animals" (
+"id"  SERIAL ,
+"animal_name" VARCHAR ,
+"animal_gender" VARCHAR ,
+"date_of_admittance" DATE ,
+"animal_type" VARCHAR ,
+"animal_breed" VARCHAR ,
+"id_customer" INTEGER ,
+PRIMARY KEY ("id")
+);
+
+CREATE TABLE "customer" (
+"id"  SERIAL ,
+"customer_name" VARCHAR ,
+"phone_number" VARCHAR ,
+"animal_type_preference" VARCHAR ,
+"animal_breed_preference" VARCHAR ,
+PRIMARY KEY ("id")
+);
+
+ALTER TABLE "animals" ADD FOREIGN KEY ("id_customer") REFERENCES "customer" ("id");
