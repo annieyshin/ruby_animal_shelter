@@ -21,7 +21,6 @@ class Animal
       date_of_admittance = animal.fetch("date_of_admittance")
       animal_type = animal.fetch("animal_type")
       animal_breed = animal.fetch("animal_breed")
-      binding.pry
       lists.push(Animal.new({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed}))
     end
     lists

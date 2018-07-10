@@ -45,11 +45,11 @@ describe(Animal) do
   #    expect(test_task.list_id()).to(eq(1))
   #  end
   # end
-  # describe('#==') do
-  #   it('is the same task if it has the same description') do
-  #     task1 = Task.new({:description => 'learn SQL', :list_id => 1, :due_date => Date.new(2018,7,20)})
-  #     task2 = Task.new({:description => 'learn SQL', :list_id => 1, :due_date => Date.new(2018,7,20)})
-  #     expect(task1).to(eq(task2))
-  #   end
-  # end
+  describe('#==') do
+    it('is the same task if it has the same description') do
+      test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => "06/06/2006", :animal_type => "cat", :animal_breed => "siamese"})
+      test_animal2 = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => "06/06/2006", :animal_type => "cat", :animal_breed => "siamese"})
+      expect(test_animal).to(eq(test_animal2))
+    end
+  end
 end
