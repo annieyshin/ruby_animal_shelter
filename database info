@@ -2,7 +2,7 @@ CREATE TABLE "animals" (
 "id"  SERIAL ,
 "animal_name" VARCHAR ,
 "animal_gender" VARCHAR ,
-"date_of_admittance" DATE ,
+"date_of_admittance" TIMESTAMP ,
 "animal_type" VARCHAR ,
 "animal_breed" VARCHAR ,
 "id_customer" INTEGER ,
