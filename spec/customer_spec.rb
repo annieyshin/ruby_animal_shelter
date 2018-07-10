@@ -4,7 +4,7 @@ require("animal_shelter")
 require("spec_helper")
 require('pry')
 require('customer')
-# require('date')
+
 
 describe(Customer) do
   describe(".all") do
@@ -13,13 +13,13 @@ describe(Customer) do
    end
   end
 end
-  # describe('#save') do
-  #   it('adds an animal to the array of saved animals') do
-  #     test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => '2006-01-01', :animal_type => "cat", :animal_breed => "siamese"})
-  #     test_animal.save()
-  #     expect(Animal.all()).to(eq([test_animal]))
-  #   end
-  # end
+  describe('#save') do
+    it('adds a customer to the array of saved customers') do
+      test_customer = Customer.new({:id => nil, :customer_name => 'Pepper Shakington', :phone_number => '714-871-7895', :animal_type_preference => "cat", :animal_breed_preference=> "siamese"})
+      test_customer.save()
+      expect(Customer.all()).to(eq([test_customer]))
+    end
+  end
   # describe("#animal_name") do
   #  it("lets you read the animal name and information") do
   #    test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => "06/06/2006", :animal_type => "cat", :animal_breed => "siamese"})

@@ -1,31 +1,33 @@
 class Customer
-  attr_reader(:id_customer, :customer_name, :phone_number, :animal_type, :animal_breed)
+  attr_reader(:id, :customer_name, :phone_number, :animal_type_preference, :animal_breed_preference)
 
   def initialize(attributes)
-    @id_customer = attributes.fetch(:id_customer)
+    # @id = attributes.fetch(:id)
     @phone_number = attributes.fetch(:phone_number)
     @customer_name = attributes.fetch(:customer_name)
-    @animal_type = attributes.fetch(:animal_type)
-    @animal_breed = attributes.fetch(:animal_breed)
+    @animal_type_preference = attributes.fetch(:animal_type_preference)
+    @animal_breed_preference = attributes.fetch(:animal_breed_preference)
   end
 
   def self.all
-    returned_lists = DB.exec("SELECT * FROM customer;")
+    returned_customers = DB.exec("SELECT * FROM customer;")
     lists = []
-    returned_lists.each() do |customer|
-      id_customer = customer.fetch("id_customer").to_i()
-      customer_name = customer.fetch('customer_name')
-      phone_number = customer.fetch('phone_number')
-      animal_type_preference = customer.fetch("animal_type_preference")
-      animal_breed_preference = customer.fetch("animal_breed_preference")
-      lists.push(Customer.new({:id_customer => id_customer, :customer_name => customer_name, :phone_number => phone_number, :animal_type_preference => animal_type_preference, :animal_breed_preference => animal_breed_preference}))
+    returned_customers.each() do |person|
+      id = person.fetch("id").to_i()
+      customer_name = person.fetch('customer_name')
+      phone_number = person.fetch('phone_number')
+      animal_type_preference = person.fetch("animal_type_preference")
+      animal_breed_preference = person.fetch("animal_breed_preference")
+      lists.push(Customer.new({:id => nil, :customer_name => customer_name, :phone_number => phone_number, :animal_type_preference => animal_type_preference, :animal_breed_preference => animal_breed_preference}))
     end
+    binding.pry
     lists
   end
-  # def save
-  #   result = DB.exec("INSERT INTO animals (animal_name, date_of_admittance, animal_gender, animal_type, animal_breed) VALUES ('#{@animal_name}', '#{@date_of_admittance}', '#{@animal_gender}', '#{@animal_type}', '#{@animal_breed}') RETURNING id;")
-  #   @id = result.first().fetch("id").to_i()
-  # end
+  def save
+    result = DB.exec("INSERT INTO customer (customer_name, phone_number, animal_type_preference, animal_breed_preference) VALUES ('#{@customer_name}', '#{@phone_number}', '#{@animal_type_preference}', '#{@animal_breed_preference}') RETURNING id;")
+    binding.pry
+    @id = result.first().fetch("id").to_i()
+  end
 
   # def list_all_animal_information
   #   returned_animals = DB.exec("SELECT * FROM animals WHERE id = (#{@id});")

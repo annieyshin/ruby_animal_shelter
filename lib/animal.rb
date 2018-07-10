@@ -39,7 +39,6 @@ class Animal
 
   def self.sort_date_of_admittance
     returned_date_of_admittance = DB.exec("SELECT * FROM animals ORDER BY date_of_admittance;")
-    binding.pry
     dates_to_sort = []
     returned_date_of_admittance.each do |animal|
       id = animal.fetch("id").to_i()

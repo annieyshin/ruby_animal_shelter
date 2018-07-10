@@ -1,9 +1,9 @@
 require("rspec")
 require("pg")
-require("animal_shelter")
+require("animal")
 require("spec_helper")
 require('pry')
-# require('date')
+
 
 describe(Animal) do
   describe(".all") do
