@@ -2,7 +2,7 @@ class Customer
   attr_reader(:id, :customer_name, :phone_number, :animal_type_preference, :animal_breed_preference)
 
   def initialize(attributes)
-    # @id = attributes.fetch(:id)
+    @id = attributes.fetch(:id)
     @phone_number = attributes.fetch(:phone_number)
     @customer_name = attributes.fetch(:customer_name)
     @animal_type_preference = attributes.fetch(:animal_type_preference)
@@ -18,14 +18,12 @@ class Customer
       phone_number = person.fetch('phone_number')
       animal_type_preference = person.fetch("animal_type_preference")
       animal_breed_preference = person.fetch("animal_breed_preference")
-      lists.push(Customer.new({:id => nil, :customer_name => customer_name, :phone_number => phone_number, :animal_type_preference => animal_type_preference, :animal_breed_preference => animal_breed_preference}))
+      lists.push(Customer.new({:id => id, :customer_name => customer_name, :phone_number => phone_number, :animal_type_preference => animal_type_preference, :animal_breed_preference => animal_breed_preference}))
     end
-    binding.pry
     lists
   end
   def save
     result = DB.exec("INSERT INTO customer (customer_name, phone_number, animal_type_preference, animal_breed_preference) VALUES ('#{@customer_name}', '#{@phone_number}', '#{@animal_type_preference}', '#{@animal_breed_preference}') RETURNING id;")
-    binding.pry
     @id = result.first().fetch("id").to_i()
   end
 
@@ -52,8 +50,8 @@ class Customer
   #   dates_to_sort
   # end
   #
-  # def ==(another_list)
-  #   self.animal_name().==(another_list.animal_name()).&(self.id().==(another_list.id()))
-  # end
+  def ==(another_list)
+    self.customer_name().==(another_list.customer_name()).&(self.id().==(another_list.id()))
+  end
 
 end
