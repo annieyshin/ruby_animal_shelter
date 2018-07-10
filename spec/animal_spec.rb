@@ -39,12 +39,16 @@ describe(Animal) do
      expect(Animal.all()).to(eq([test_animal, test_animal2]))
    end
   end
-  # describe("#list_id") do
-  #  it("lets you read the list ID out") do
-  #    test_task = Task.new({:description => "learn SQL", :list_id => 1, :due_date => Date.new(2018,7,20)})
-  #    expect(test_task.list_id()).to(eq(1))
-  #  end
-  # end
+  describe("#sort_date_of_admittance") do
+    it("will sort all animals by the day they were admitted") do
+      test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => "06/06/2012", :animal_type => "cat", :animal_breed => "siamese"})
+      test_animal.save()
+      test_animal2 = Animal.new({:id => 2, :animal_name => 'Mookie', animal_gender: 'male', :date_of_admittance=>"06/06/2006", :animal_type => "dog", :animal_breed => "chow chow"})
+      test_animal2.save()
+      expect(Animal.sort_date_of_admittance()).to(eq([test_animal2, test_animal]))
+    end
+  end
+
   describe('#==') do
     it('is the same task if it has the same description') do
       test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => "06/06/2006", :animal_type => "cat", :animal_breed => "siamese"})

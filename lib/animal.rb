@@ -37,14 +37,18 @@ class Animal
     animal_array
   end
 
-  def sort_date_of_admittance
-    returned_date_of_admittance = DB.exec("SELECT * FROM animals WHERE id =(#{@id}) ORDER BY date_of_admittance;")
+  def self.sort_date_of_admittance
+    returned_date_of_admittance = DB.exec("SELECT * FROM animals ORDER BY date_of_admittance;")
+    binding.pry
     dates_to_sort = []
-    returned_date_of_admittance.each do |task|
-      id = animals.fetch("id").to_i
-      animal_name = animals.fetch("animal_name")
-      date_of_admittance = animals.fetch("date_of_admittance")
-      dates_to_sort.push(Animal.new({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed, :id_customer => id_customer}))
+    returned_date_of_admittance.each do |animal|
+      id = animal.fetch("id").to_i()
+      animal_name = animal.fetch('animal_name')
+      animal_gender = animal.fetch('animal_gender')
+      date_of_admittance = animal.fetch("date_of_admittance")
+      animal_type = animal.fetch("animal_type")
+      animal_breed = animal.fetch("animal_breed")
+      dates_to_sort.push(Animal.new({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed}))
     end
     dates_to_sort
   end
