@@ -13,28 +13,30 @@ describe(Animal) do
   end
   describe('#save') do
     it('adds an animal to the array of saved animals') do
-      test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => 06/06/2006, :animal_type => "cat", :animal_breed => "siamese"})
+      test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => '2006-01-01', :animal_type => "cat", :animal_breed => "siamese"})
       test_animal.save()
       expect(Animal.all()).to(eq([test_animal]))
     end
   end
   describe("#animal_name") do
    it("lets you read the animal name and information") do
-     test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => 06/06/2006, :animal_type => "cat", :animal_breed => "siamese"})
+     test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => "06/06/2006", :animal_type => "cat", :animal_breed => "siamese"})
      expect(test_animal.animal_name()).to(eq("Charlie"))
    end
   end
   describe("#list_all_animal_information") do
    it("lets you read the animal name and information") do
-     test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => 06/06/2006, :animal_type => "cat", :animal_breed => "siamese"})
-     expect(test_animal.list_all_animal_information()).to(eq([{:id=>1, :animal_name=>"Charlie", :animal_gender=>"female", :date_of_admittance=>0, :animal_type=>"cat", :animal_breed=>"siamese"}]))
+     test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => "06/06/2006", :animal_type => "cat", :animal_breed => "siamese"})
+     expect(test_animal.list_all_animal_information()).to(eq([{:id=>1, :animal_name=>"Charlie", :animal_gender=>"female", :date_of_admittance=>"06/06/2006", :animal_type=>"cat", :animal_breed=>"siamese"}]))
    end
   end
   describe("#list_all_animal_information") do
    it("lets you read the animal name and information") do
-     test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => 06/06/2006, :animal_type => "cat", :animal_breed => "siamese"})
-     test_animal2 = Animal.new({:id => 2, :animal_name => 'Mookie', animal_gender: 'male', :date_of_admittance => 01/01/2001, :animal_type => "dog", :animal_breed => "chow chow"})
-     expect(test_animal2.list_all_animal_information()).to(eq([{:id=>2, :animal_name=>"Mookie", :animal_gender=>"male", :date_of_admittance=>0, :animal_type=>"dog", :animal_breed=>"chow chow"}]))
+     test_animal = Animal.new({:id => 1, :animal_name => 'Charlie', animal_gender: 'female', :date_of_admittance => "06/06/2006", :animal_type => "cat", :animal_breed => "siamese"})
+     test_animal.save()
+     test_animal2 = Animal.new({:id => 2, :animal_name => 'Mookie', animal_gender: 'male', :date_of_admittance=>"06/06/2006", :animal_type => "dog", :animal_breed => "chow chow"})
+     test_animal2.save()
+     expect(Animal.all()).to(eq([test_animal, test_animal2]))
    end
   end
   # describe("#list_id") do

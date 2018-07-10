@@ -16,19 +16,18 @@ class Animal
     lists = []
     returned_lists.each() do |animal|
       id = animal.fetch("id").to_i()
-      animal_name = animal.fetch("animal_name")
-      animal_gender = animal.fetch("animal_gender")
+      animal_name = animal.fetch('animal_name')
+      animal_gender = animal.fetch('animal_gender')
       date_of_admittance = animal.fetch("date_of_admittance")
       animal_type = animal.fetch("animal_type")
       animal_breed = animal.fetch("animal_breed")
-      id_customer = animal.fetch("id_customer")
-
-      lists.push(Animal.new({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed, :id_customer => id_customer}))
+      binding.pry
+      lists.push(Animal.new({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed}))
     end
     lists
   end
   def save
-    result = DB.exec("INSERT INTO animals (animal_name) VALUES ('#{@animal_name}') RETURNING id;")
+    result = DB.exec("INSERT INTO animals (animal_name, date_of_admittance, animal_gender, animal_type, animal_breed) VALUES ('#{@animal_name}', '#{@date_of_admittance}', '#{@animal_gender}', '#{@animal_type}', '#{@animal_breed}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
 
@@ -36,7 +35,6 @@ class Animal
     returned_animals = DB.exec("SELECT * FROM animals WHERE id = (#{@id});")
     animal_array = []
     animal_array.push({:id => id, :animal_name => animal_name, :animal_gender => animal_gender, :date_of_admittance => date_of_admittance, :animal_type => animal_type, :animal_breed => animal_breed})
-    binding.pry
     animal_array
   end
 
